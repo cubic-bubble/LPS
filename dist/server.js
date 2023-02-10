@@ -105,10 +105,10 @@ var STORAGES = {
                         case 1:
                             list = _a.sent(), sids = [], each = function (metadata) {
                                 for (var x in list) {
-                                    var _a = list[x], type = _a.type, nsi = _a.nsi, name = _a.name, namespace = _a.namespace, version = _a.version;
+                                    var _a = list[x], type = _a.type, nsi = _a.nsi, name_1 = _a.name, namespace = _a.namespace, version = _a.version;
                                     if (type == metadata.type
                                         && nsi == metadata.nsi
-                                        && name == metadata.name
+                                        && name_1 == metadata.name
                                         && namespace == metadata.namespace
                                         && version == metadata.version) {
                                         sids.push(list[x].sid); // Record existing item Store ID (sid)

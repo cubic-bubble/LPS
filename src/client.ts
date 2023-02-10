@@ -1,3 +1,5 @@
+// @ts-browser
+
 import type {
   Metadata,
   LPSClientOptions,
@@ -27,11 +29,12 @@ export default class Client {
 
       if( data ) options.body = JSON.stringify( data )
 
-      window
-      .fetch(`/lpstore${ api !== '/' ? api : ''}`, options )
-      .then( ( res: any ) => { return !res.ok ? reject( res.status ) : res.json() } )
-      .then( resolve )
-      .catch( reject )
+      if( window !== undefined )
+        window
+        .fetch(`/lpstore${ api !== '/' ? api : ''}`, options )
+        .then( ( res: any ) => { return !res.ok ? reject( res.status ) : res.json() } )
+        .then( resolve )
+        .catch( reject )
     } )
   }
 
