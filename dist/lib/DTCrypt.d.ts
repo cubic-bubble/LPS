@@ -16,7 +16,7 @@
  * @param {mixed} arg
  * @return {string}
  */
-export declare const encrypt: (arg: any) => string
+export declare const encrypt: (arg: any) => string;
 /**
  * Decrypt
  *
@@ -26,9 +26,9 @@ export declare const encrypt: (arg: any) => string
  * @param {string} input
  * @return {mixed}
  */
-export declare const decrypt: (input: string) => any
+export declare const decrypt: (input: string) => any;
 declare const _default: {
     encrypt: (arg: any) => string;
     decrypt: (input: string) => any;
-}
-export default _default
+};
+export default _default;
