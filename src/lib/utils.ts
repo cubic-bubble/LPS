@@ -5,3 +5,12 @@ export const ruuid = () => {
     return v.toString(16)
   })
 }
+
+export const Obj2Params = ( obj: any, excludes?: string[] ) => {
+  return typeof obj == 'object' ?
+            Object.entries( obj )
+                  .map( ([ key, value ]) => {
+                    if( !Array.isArray( excludes ) || !excludes.includes( key ) )
+                      return `${key }=${ value}`
+                  }).join('&') : ''
+}

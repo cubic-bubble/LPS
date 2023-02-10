@@ -1,42 +1,20 @@
 
 import type { FastifyInstance } from 'fastify'
-import type { Collection, Filter, Document } from 'mongodb'
+import type {
+  LPSServerOptions,
+  LPSFileSystemStorage,
+  LPSFileSystemStorageOptions,
+  LPSMongodbStorage,
+  LPSMongoDbStorageOptions
+} from './types'
 import fs from 'fs-extra'
 import { Router } from 'express'
 import { decrypt, encrypt } from './lib/DTCrypt'
 import { ruuid } from './lib/utils'
 
-type FileSystemStorageOptions = {
-  path: string
-}
-type MongoDbStorageOptions = {
-  collection: Collection
-}
-interface FileSystemStorage {
-  insert: ( input: any ) => Promise<string>
-  get: ( conditions: any ) => Promise<any>
-  fetch: ( filters: any ) => Promise<any[]>
-  update: ( sid: string, updates: any ) => Promise<string>
-  delete: ( sid: string ) => Promise<string>
-}
-interface MongodbStorage {
-  insert: ( input: any ) => Promise<string>
-  get: ( conditions: Filter<Document> ) => Promise<any>
-  fetch: ( filters: Filter<Document> ) => Promise<any[]>
-  update: ( sid: string, updates: any ) => Promise<string>
-  delete: ( sid: string ) => Promise<string>
-}
-type ServerOptions = {
-  serverType?: 'express' | 'fastify'
-  storageType?: 'filesystem' | 'mongodb'
-  path?: string
-  table?: string
-  collection?: Collection
-}
-
 const
 STORAGES = {
-  filesystem: ( options: FileSystemStorageOptions ): FileSystemStorage => {
+  filesystem: ( options: LPSFileSystemStorageOptions ): LPSFileSystemStorage => {
     const storePath = options.path
 
     async function getCollection(){
@@ -153,7 +131,7 @@ STORAGES = {
       }
     }
   },
-  mongodb: ( options: MongoDbStorageOptions ): MongodbStorage => {
+  mongodb: ( options: LPSMongoDbStorageOptions ): LPSMongodbStorage => {
 
     const { collection } = options
     if( !collection || !collection.insertOne )
@@ -212,7 +190,7 @@ STORAGES = {
   }
 },
 SERVERS = {
-  express: ( App: Router, Storage: FileSystemStorage | MongodbStorage ) => {
+  express: ( App: Router, Storage: LPSFileSystemStorage | LPSMongodbStorage ) => {
     const route = Router()
     .use((req, res, next) => {
       if (req.headers['lps-user-agent'] !== 'LPS/RM' ||
@@ -318,7 +296,7 @@ SERVERS = {
 
     App.use('/lpstore', route)
   },
-  fastify: ( App: FastifyInstance, Storage: FileSystemStorage | MongodbStorage ) => {
+  fastify: ( App: FastifyInstance, Storage: LPSFileSystemStorage | LPSMongodbStorage ) => {
 
     const route = async ( instance: FastifyInstance ) => {
       instance
@@ -392,13 +370,13 @@ SERVERS = {
 
 export default class Server {
 
-  private serverType: ServerOptions['serverType'] = 'express'
-  private storageType: ServerOptions['storageType'] = 'filesystem'
+  private serverType: LPSServerOptions['serverType'] = 'express'
+  private storageType: LPSServerOptions['storageType'] = 'filesystem'
   private path = `${process.cwd()}/.lps`
-  public Storage: FileSystemStorage | MongodbStorage
+  public Storage: LPSFileSystemStorage | LPSMongodbStorage
   public Server: Router | FastifyInstance | undefined
 
-  constructor( options?: ServerOptions, Server?: Router | FastifyInstance ){
+  constructor( options?: LPSServerOptions, Server?: Router | FastifyInstance ){
     if( options?.serverType ) this.serverType = options.serverType
     if( options?.storageType ) this.storageType = options.storageType
     if( options?.path ) this.path = options.path

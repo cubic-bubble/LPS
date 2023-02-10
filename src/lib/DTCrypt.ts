@@ -11,29 +11,6 @@
 import CryptoJS from 'crypto-js'
 import Randtoken from 'rand-token'
 
-const CryptoJSAesJson = {
-
-  stringify: ( cipherParams: any ) => {
-
-    const obj: any = { ct: cipherParams.ciphertext.toString( CryptoJS.enc.Base64 ) }
-
-    if( cipherParams.iv ) obj.iv = cipherParams.iv.toString()
-    if( cipherParams.salt ) obj.s = cipherParams.salt.toString()
-
-    return JSON.stringify( obj )
-  },
-  parse: ( jsonStr: string ) => {
-    const
-    obj = JSON.parse( jsonStr ),
-    cipherParams = CryptoJS.lib.CipherParams.create({ ciphertext: CryptoJS.enc.Base64.parse( obj.ct ) })
-
-    if( obj.iv ) cipherParams.iv = CryptoJS.enc.Hex.parse( obj.iv )
-    if( obj.s ) cipherParams.salt = CryptoJS.enc.Hex.parse( obj.s )
-
-    return cipherParams
-  }
-}
-
 function reverse( str: string ){
   return str.split('').reverse().join('')
 }

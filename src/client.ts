@@ -1,65 +1,22 @@
-type Metadata = {
-  type: 'application' | 'plugin' | 'library'
-  name: string
-  namespace: string
-  nsi: string
-  description: string
-  version: string
-  favicon: string
-  categories: string[]
-  runscript?: {
-    [index: string]: {
-      workspace?: string
-      autoload?: boolean
-    }
-  },
-  resource?: {
-    dependencies?: string[]
-    permissions?: {
-      scope?: (string | { type: string, access: string })[]
-    }
-    services?: { [index: string]: string[] }
-  },
-  author: {
-    type: string
-    name: string
-  },
-  configs?: { [index: string]: any }
-}
-type ClientRequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE'
-type ClientRequestOptions = {
-  method: ClientRequestMethod
-  headers: { [index: string]: string }
-  body?: any
-}
-type ClientResponse = {
-  error: boolean
-  message: string
-  result?: any
-}
-type ClientOptions = {
-  userAgent: string
-  clientId: string
-}
-type QueryArgument = { [index: string]: string }
+import type {
+  Metadata,
+  LPSClientOptions,
+  LPSClientRequestMethod,
+  LPSClientRequestOptions,
+  LPSClientResponse,
+} from './types'
+import { Obj2Params } from './lib/utils'
 
-function Obj2Params( obj: any, excludes?: string[] ){
-  return typeof obj == 'object' ?
-            Object.entries( obj )
-                  .map( ([ key, value ]) => {
-                    if( !Array.isArray( excludes ) || !excludes.includes( key ) )
-                      return `${key }=${ value}`
-                  }).join('&') : ''
-}
+type QueryArgument = { [index: string]: string }
 
 export default class Client {
 
   private userAgent = 'LPS/RM'
   private clientId = 'OPAC-12-09HH--$0'
 
-  private Request( api: string, method?: ClientRequestMethod, data?: any ): Promise<ClientResponse>{
+  private Request( api: string, method?: LPSClientRequestMethod, data?: any ): Promise<LPSClientResponse>{
     return new Promise( ( resolve, reject ) => {
-      const options: ClientRequestOptions = {
+      const options: LPSClientRequestOptions = {
         method: method || 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +35,7 @@ export default class Client {
     } )
   }
 
-  constructor( options?: ClientOptions ){
+  constructor( options?: LPSClientOptions ){
     if( options?.userAgent ) this.userAgent = options.userAgent
     if( options?.clientId ) this.clientId = options.clientId
   }
