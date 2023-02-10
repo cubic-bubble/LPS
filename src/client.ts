@@ -1,5 +1,3 @@
-// @ts-browser
-
 import type {
   Metadata,
   LPSClientOptions,
