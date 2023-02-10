@@ -1,9 +1,9 @@
 {
   "name": "@cubic-bubble/lps",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Local Package Storage (CPM+)",
-  "main": "./dist/index.js",
-  "types": "./src/types/index.d.ts",
+  "main": "./dist/index",
+  "typings": "./dist/index",
   "scripts": {
     "compile": "rimraf ./dist && tsc",
     "test": "ava test/**/*.js --verbose",
