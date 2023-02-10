@@ -36,15 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-function Obj2Params(obj, excludes) {
-    return typeof obj == 'object' ?
-        Object.entries(obj)
-            .map(function (_a) {
-            var key = _a[0], value = _a[1];
-            if (!Array.isArray(excludes) || !excludes.includes(key))
-                return "".concat(key, "=").concat(value);
-        }).join('&') : '';
-}
+var utils_1 = require("./lib/utils");
 var Client = /** @class */ (function () {
     function Client(options) {
         this.userAgent = 'LPS/RM';
@@ -67,6 +59,7 @@ var Client = /** @class */ (function () {
             };
             if (data)
                 options.body = JSON.stringify(data);
+            // @ts-ignore
             window
                 .fetch("/lpstore".concat(api !== '/' ? api : ''), options)
                 .then(function (res) { return !res.ok ? reject(res.status) : res.json(); })
@@ -105,7 +98,7 @@ var Client = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.Request("".concat(query ? "?".concat(Obj2Params(query)) : '/'))];
+                        return [4 /*yield*/, this.Request("".concat(query ? "?".concat((0, utils_1.Obj2Params)(query)) : '/'))];
                     case 1:
                         _a = _b.sent(), error = _a.error, message = _a.message, result = _a.result;
                         if (error)
@@ -128,7 +121,7 @@ var Client = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.Request("/fetch".concat(query ? "?".concat(Obj2Params(query)) : ''))];
+                        return [4 /*yield*/, this.Request("/fetch".concat(query ? "?".concat((0, utils_1.Obj2Params)(query)) : ''))];
                     case 1:
                         _a = _b.sent(), error = _a.error, message = _a.message, result = _a.result;
                         if (error)

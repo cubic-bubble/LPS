@@ -3,10 +3,14 @@
     "files": true
   },
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "src/client.ts",
+    "src/server.ts",
+    "src/types/index.d.ts"
   ],
   "compilerOptions": {
     "target": "es5",
+    "lib": ["es6"],
     "module": "commonjs",
     "resolveJsonModule": true,
     "outDir": "dist",
@@ -17,5 +21,6 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true
   },
-  "include": ["/src/**/*"]
+  "include": ["/src/*"],
+  "exclude": ["./dist"]
 }

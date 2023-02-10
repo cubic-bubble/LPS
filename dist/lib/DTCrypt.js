@@ -15,24 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrypt = exports.encrypt = void 0;
 var crypto_js_1 = __importDefault(require("crypto-js"));
 var rand_token_1 = __importDefault(require("rand-token"));
-var CryptoJSAesJson = {
-    stringify: function (cipherParams) {
-        var obj = { ct: cipherParams.ciphertext.toString(crypto_js_1.default.enc.Base64) };
-        if (cipherParams.iv)
-            obj.iv = cipherParams.iv.toString();
-        if (cipherParams.salt)
-            obj.s = cipherParams.salt.toString();
-        return JSON.stringify(obj);
-    },
-    parse: function (jsonStr) {
-        var obj = JSON.parse(jsonStr), cipherParams = crypto_js_1.default.lib.CipherParams.create({ ciphertext: crypto_js_1.default.enc.Base64.parse(obj.ct) });
-        if (obj.iv)
-            cipherParams.iv = crypto_js_1.default.enc.Hex.parse(obj.iv);
-        if (obj.s)
-            cipherParams.salt = crypto_js_1.default.enc.Hex.parse(obj.s);
-        return cipherParams;
-    }
-};
 function reverse(str) {
     return str.split('').reverse().join('');
 }
