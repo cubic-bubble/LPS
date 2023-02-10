@@ -4,9 +4,7 @@
   "description": "Local Package Storage (CPM+)",
   "main": "/dist/index.js",
   "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.js",
-    "types": "./src/types/index.d.ts"
+    "import": "./src/index.ts"
   },
   "files": [
     "dist/",
