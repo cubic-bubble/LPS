@@ -3,8 +3,7 @@
     "files": true
   },
   "files": [
-    "src/server.ts",
-    "src/client.ts"
+    "src/index.ts"
   ],
   "compilerOptions": {
     "target": "es5",

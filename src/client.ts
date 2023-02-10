@@ -52,7 +52,7 @@ function Obj2Params( obj: any, excludes?: string[] ){
                   }).join('&') : ''
 }
 
-export default class LSPClient {
+export default class Client {
 
   private userAgent = 'LPS/RM'
   private clientId = 'OPAC-12-09HH--$0'

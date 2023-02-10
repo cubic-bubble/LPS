@@ -2,7 +2,14 @@
   "name": "@cubic-bubble/lps",
   "version": "0.0.1",
   "description": "Local Package Storage (CPM+)",
-  "main": "build/server.js",
+  "main": "build/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "files": [
+    "src/index.ts"
+  ],
   "scripts": {
     "compile": "rimraf ./dist && tsc",
     "test": "ava test/**/*.js --verbose",

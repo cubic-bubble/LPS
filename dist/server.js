@@ -587,8 +587,8 @@ var STORAGES = {
         App.register(route, { prefix: '/lpstore' });
     }
 };
-var LPSServer = /** @class */ (function () {
-    function LPSServer(options, Server) {
+var Server = /** @class */ (function () {
+    function Server(options, Server) {
         this.serverType = 'express';
         this.storageType = 'filesystem';
         this.path = "".concat(process.cwd(), "/.lps");
@@ -613,7 +613,7 @@ var LPSServer = /** @class */ (function () {
             default: this.Storage = STORAGES.filesystem({ path: this.path });
         }
     }
-    LPSServer.prototype.listen = function () {
+    Server.prototype.listen = function () {
         if (!this.Server)
             throw new Error('Undefined HTTP Server');
         switch (this.serverType) {
@@ -625,6 +625,6 @@ var LPSServer = /** @class */ (function () {
                 break;
         }
     };
-    return LPSServer;
+    return Server;
 }());
-exports.default = LPSServer;
+exports.default = Server;

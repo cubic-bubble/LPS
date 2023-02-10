@@ -322,7 +322,7 @@ SERVERS = {
 
     const route = async ( instance: FastifyInstance ) => {
       instance
-      .addHook('preHandler', async ( req, rep ) => { 
+      .addHook('preHandler', async ( req, rep ) => {
         if (req.headers['lps-user-agent'] !== 'LPS/RM' ||
             req.headers['lps-client-id'] !== 'OPAC-12-09HH--$0') {
           rep.code(403)
@@ -390,7 +390,7 @@ SERVERS = {
   }
 }
 
-export default class LPSServer {
+export default class Server {
 
   private serverType: ServerOptions['serverType'] = 'express'
   private storageType: ServerOptions['storageType'] = 'filesystem'

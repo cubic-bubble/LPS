@@ -45,8 +45,8 @@ function Obj2Params(obj, excludes) {
                 return "".concat(key, "=").concat(value);
         }).join('&') : '';
 }
-var LSPClient = /** @class */ (function () {
-    function LSPClient(options) {
+var Client = /** @class */ (function () {
+    function Client(options) {
         this.userAgent = 'LPS/RM';
         this.clientId = 'OPAC-12-09HH--$0';
         if (options === null || options === void 0 ? void 0 : options.userAgent)
@@ -54,7 +54,7 @@ var LSPClient = /** @class */ (function () {
         if (options === null || options === void 0 ? void 0 : options.clientId)
             this.clientId = options.clientId;
     }
-    LSPClient.prototype.Request = function (api, method, data) {
+    Client.prototype.Request = function (api, method, data) {
         var _this = this;
         return new Promise(function (resolve, reject) {
             var options = {
@@ -75,7 +75,7 @@ var LSPClient = /** @class */ (function () {
         });
     };
     // Store new item (metadata)
-    LSPClient.prototype.set = function (metadata) {
+    Client.prototype.set = function (metadata) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, error, message, result, error_1;
             return __generator(this, function (_b) {
@@ -98,7 +98,7 @@ var LSPClient = /** @class */ (function () {
         });
     };
     // Get an items details
-    LSPClient.prototype.get = function (query) {
+    Client.prototype.get = function (query) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, error, message, result, error_2;
             return __generator(this, function (_b) {
@@ -121,7 +121,7 @@ var LSPClient = /** @class */ (function () {
         });
     };
     // Fetch items by query
-    LSPClient.prototype.fetch = function (query) {
+    Client.prototype.fetch = function (query) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, error, message, result, error_3;
             return __generator(this, function (_b) {
@@ -144,7 +144,7 @@ var LSPClient = /** @class */ (function () {
         });
     };
     // Update item (metadata)
-    LSPClient.prototype.update = function (sid, updates) {
+    Client.prototype.update = function (sid, updates) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, error, message, result, error_4;
             return __generator(this, function (_b) {
@@ -167,7 +167,7 @@ var LSPClient = /** @class */ (function () {
         });
     };
     // Delete item from store
-    LSPClient.prototype.remove = function (sid) {
+    Client.prototype.remove = function (sid) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, error, message, result, error_5;
             return __generator(this, function (_b) {
@@ -189,6 +189,6 @@ var LSPClient = /** @class */ (function () {
             });
         });
     };
-    return LSPClient;
+    return Client;
 }());
-exports.default = LSPClient;
+exports.default = Client;
