@@ -27,7 +27,6 @@ export default class Client {
 
       if( data ) options.body = JSON.stringify( data )
 
-      // @ts-ignore
       window
       .fetch(`/lpstore${ api !== '/' ? api : ''}`, options )
       .then( ( res: any ) => { return !res.ok ? reject( res.status ) : res.json() } )
