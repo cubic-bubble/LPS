@@ -1,0 +1,2 @@
+
+declare module 'rand-token'
