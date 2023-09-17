@@ -1,6 +1,6 @@
 {
   "name": "@cubic-bubble/lps",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Local Package Storage (CPM+)",
   "main": "./dist/index",
   "typings": "./dist/index",
