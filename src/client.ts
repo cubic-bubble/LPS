@@ -9,7 +9,7 @@ import { Obj2Params } from './lib/utils'
 
 type QueryArgument = { [index: string]: string }
 
-export class Client {
+export default class Client {
 
   private userAgent = 'LPS/RM'
   private clientId = 'OPAC-12-09HH--$0'

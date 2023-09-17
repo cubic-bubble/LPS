@@ -9,7 +9,7 @@
     "test": "ava test/**/*.js --verbose",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "prepack": "yarn lint:fix"
+    "prepack": "yarn compile"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",

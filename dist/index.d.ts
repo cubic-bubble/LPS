@@ -1,9 +1,7 @@
-import server from './server'
-import client from './client'
-export declare const Server: typeof server
-export declare const Client: typeof client
+import Server from './server';
+import Client from './client';
 declare const _default: {
-    Server: typeof server;
-    Client: typeof client;
-}
-export default _default
+    Server: typeof Server;
+    Client: typeof Client;
+};
+export default _default;

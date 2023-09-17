@@ -1,2 +1,4 @@
-export { Server } from './server'
-export { Client } from './client'
+import Server from './server'
+import Client from './client'
+
+export default { Server, Client }

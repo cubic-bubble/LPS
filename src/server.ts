@@ -368,7 +368,7 @@ SERVERS = {
   }
 }
 
-export class Server {
+export default class Server {
 
   private serverType: LPSServerOptions['serverType'] = 'express'
   private storageType: LPSServerOptions['storageType'] = 'filesystem'
